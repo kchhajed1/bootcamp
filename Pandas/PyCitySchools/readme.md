@@ -464,6 +464,7 @@ school_summary_final_df["Total School Budget"] = school_summary_final_df["Total 
 school_summary_final_df["Per Student Budget"] = school_summary_final_df["Per Student Budget"].map("${0:,.2f}".format)
 
 
+school_summary_final_df = school_summary_final_df.set_index("school")
 school_summary_final_df
 ```
 
@@ -488,7 +489,6 @@ school_summary_final_df
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>school</th>
       <th>School Type</th>
       <th>Total Students</th>
       <th>Total School Budget</th>
@@ -499,11 +499,22 @@ school_summary_final_df
       <th>% Passing Read</th>
       <th>% Overall Passing Rate</th>
     </tr>
+    <tr>
+      <th>school</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>7</th>
-      <td>Bailey High School</td>
+      <th>Bailey High School</th>
       <td>District</td>
       <td>4976</td>
       <td>$3,124,928.00</td>
@@ -515,8 +526,7 @@ school_summary_final_df
       <td>71.965434</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>Cabrera High School</td>
+      <th>Cabrera High School</th>
       <td>Charter</td>
       <td>1858</td>
       <td>$1,081,356.00</td>
@@ -528,8 +538,7 @@ school_summary_final_df
       <td>91.711518</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Figueroa High School</td>
+      <th>Figueroa High School</th>
       <td>District</td>
       <td>2949</td>
       <td>$1,884,411.00</td>
@@ -541,8 +550,7 @@ school_summary_final_df
       <td>71.091896</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Ford High School</td>
+      <th>Ford High School</th>
       <td>District</td>
       <td>2739</td>
       <td>$1,763,916.00</td>
@@ -554,8 +562,7 @@ school_summary_final_df
       <td>71.631982</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Griffin High School</td>
+      <th>Griffin High School</th>
       <td>Charter</td>
       <td>1468</td>
       <td>$917,500.00</td>
@@ -567,8 +574,7 @@ school_summary_final_df
       <td>91.553134</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Hernandez High School</td>
+      <th>Hernandez High School</th>
       <td>District</td>
       <td>4635</td>
       <td>$3,022,020.00</td>
@@ -580,8 +586,7 @@ school_summary_final_df
       <td>71.467098</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Holden High School</td>
+      <th>Holden High School</th>
       <td>Charter</td>
       <td>427</td>
       <td>$248,087.00</td>
@@ -593,8 +598,7 @@ school_summary_final_df
       <td>91.686183</td>
     </tr>
     <tr>
-      <th>0</th>
-      <td>Huang High School</td>
+      <th>Huang High School</th>
       <td>District</td>
       <td>2917</td>
       <td>$1,910,635.00</td>
@@ -606,8 +610,7 @@ school_summary_final_df
       <td>71.066164</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Johnson High School</td>
+      <th>Johnson High School</th>
       <td>District</td>
       <td>4761</td>
       <td>$3,094,650.00</td>
@@ -619,8 +622,7 @@ school_summary_final_df
       <td>71.067003</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>Pena High School</td>
+      <th>Pena High School</th>
       <td>Charter</td>
       <td>962</td>
       <td>$585,858.00</td>
@@ -632,8 +634,7 @@ school_summary_final_df
       <td>91.943867</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>Rodriguez High School</td>
+      <th>Rodriguez High School</th>
       <td>District</td>
       <td>3999</td>
       <td>$2,547,363.00</td>
@@ -645,8 +646,7 @@ school_summary_final_df
       <td>70.905226</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Shelton High School</td>
+      <th>Shelton High School</th>
       <td>Charter</td>
       <td>1761</td>
       <td>$1,056,600.00</td>
@@ -658,8 +658,7 @@ school_summary_final_df
       <td>91.254969</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>Thomas High School</td>
+      <th>Thomas High School</th>
       <td>Charter</td>
       <td>1635</td>
       <td>$1,043,130.00</td>
@@ -671,8 +670,7 @@ school_summary_final_df
       <td>91.559633</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Wilson High School</td>
+      <th>Wilson High School</th>
       <td>Charter</td>
       <td>2283</td>
       <td>$1,319,574.00</td>
@@ -684,8 +682,7 @@ school_summary_final_df
       <td>92.093736</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Wright High School</td>
+      <th>Wright High School</th>
       <td>Charter</td>
       <td>1800</td>
       <td>$1,049,400.00</td>
@@ -731,7 +728,6 @@ school_summary_top_perform.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>school</th>
       <th>School Type</th>
       <th>Total Students</th>
       <th>Total School Budget</th>
@@ -742,11 +738,22 @@ school_summary_top_perform.head()
       <th>% Passing Read</th>
       <th>% Overall Passing Rate</th>
     </tr>
+    <tr>
+      <th>school</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>5</th>
-      <td>Wilson High School</td>
+      <th>Wilson High School</th>
       <td>Charter</td>
       <td>2283</td>
       <td>$1,319,574.00</td>
@@ -758,8 +765,7 @@ school_summary_top_perform.head()
       <td>92.093736</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>Pena High School</td>
+      <th>Pena High School</th>
       <td>Charter</td>
       <td>962</td>
       <td>$585,858.00</td>
@@ -771,8 +777,7 @@ school_summary_top_perform.head()
       <td>91.943867</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Wright High School</td>
+      <th>Wright High School</th>
       <td>Charter</td>
       <td>1800</td>
       <td>$1,049,400.00</td>
@@ -784,8 +789,7 @@ school_summary_top_perform.head()
       <td>91.861111</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>Cabrera High School</td>
+      <th>Cabrera High School</th>
       <td>Charter</td>
       <td>1858</td>
       <td>$1,081,356.00</td>
@@ -797,8 +801,7 @@ school_summary_top_perform.head()
       <td>91.711518</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Holden High School</td>
+      <th>Holden High School</th>
       <td>Charter</td>
       <td>427</td>
       <td>$248,087.00</td>
@@ -844,7 +847,6 @@ school_summary_bottom_perform.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>school</th>
       <th>School Type</th>
       <th>Total Students</th>
       <th>Total School Budget</th>
@@ -855,11 +857,22 @@ school_summary_bottom_perform.head()
       <th>% Passing Read</th>
       <th>% Overall Passing Rate</th>
     </tr>
+    <tr>
+      <th>school</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>11</th>
-      <td>Rodriguez High School</td>
+      <th>Rodriguez High School</th>
       <td>District</td>
       <td>3999</td>
       <td>$2,547,363.00</td>
@@ -871,8 +884,7 @@ school_summary_bottom_perform.head()
       <td>70.905226</td>
     </tr>
     <tr>
-      <th>0</th>
-      <td>Huang High School</td>
+      <th>Huang High School</th>
       <td>District</td>
       <td>2917</td>
       <td>$1,910,635.00</td>
@@ -884,8 +896,7 @@ school_summary_bottom_perform.head()
       <td>71.066164</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Johnson High School</td>
+      <th>Johnson High School</th>
       <td>District</td>
       <td>4761</td>
       <td>$3,094,650.00</td>
@@ -897,8 +908,7 @@ school_summary_bottom_perform.head()
       <td>71.067003</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Figueroa High School</td>
+      <th>Figueroa High School</th>
       <td>District</td>
       <td>2949</td>
       <td>$1,884,411.00</td>
@@ -910,8 +920,7 @@ school_summary_bottom_perform.head()
       <td>71.091896</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Hernandez High School</td>
+      <th>Hernandez High School</th>
       <td>District</td>
       <td>4635</td>
       <td>$3,022,020.00</td>
@@ -940,6 +949,7 @@ math_score_grade=pd.DataFrame(student_df.groupby(["school","grade"])["math_score
 
 math_score_grade_organized=math_score_grade[["school","9th","10th","11th","12th"]]
 
+math_score_grade_organized = math_score_grade_organized.set_index("school")
 math_score_grade_organized
 ```
 
@@ -964,129 +974,120 @@ math_score_grade_organized
   <thead>
     <tr style="text-align: right;">
       <th>grade</th>
-      <th>school</th>
       <th>9th</th>
       <th>10th</th>
       <th>11th</th>
       <th>12th</th>
     </tr>
+    <tr>
+      <th>school</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Bailey High School</td>
+      <th>Bailey High School</th>
       <td>77.083676</td>
       <td>76.996772</td>
       <td>77.515588</td>
       <td>76.492218</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Cabrera High School</td>
+      <th>Cabrera High School</th>
       <td>83.094697</td>
       <td>83.154506</td>
       <td>82.765560</td>
       <td>83.277487</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Figueroa High School</td>
+      <th>Figueroa High School</th>
       <td>76.403037</td>
       <td>76.539974</td>
       <td>76.884344</td>
       <td>77.151369</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Ford High School</td>
+      <th>Ford High School</th>
       <td>77.361345</td>
       <td>77.672316</td>
       <td>76.918058</td>
       <td>76.179963</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Griffin High School</td>
+      <th>Griffin High School</th>
       <td>82.044010</td>
       <td>84.229064</td>
       <td>83.842105</td>
       <td>83.356164</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Hernandez High School</td>
+      <th>Hernandez High School</th>
       <td>77.438495</td>
       <td>77.337408</td>
       <td>77.136029</td>
       <td>77.186567</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>Holden High School</td>
+      <th>Holden High School</th>
       <td>83.787402</td>
       <td>83.429825</td>
       <td>85.000000</td>
       <td>82.855422</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>Huang High School</td>
+      <th>Huang High School</th>
       <td>77.027251</td>
       <td>75.908735</td>
       <td>76.446602</td>
       <td>77.225641</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Johnson High School</td>
+      <th>Johnson High School</th>
       <td>77.187857</td>
       <td>76.691117</td>
       <td>77.491653</td>
       <td>76.863248</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>Pena High School</td>
+      <th>Pena High School</th>
       <td>83.625455</td>
       <td>83.372000</td>
       <td>84.328125</td>
       <td>84.121547</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Rodriguez High School</td>
+      <th>Rodriguez High School</th>
       <td>76.859966</td>
       <td>76.612500</td>
       <td>76.395626</td>
       <td>77.690748</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>Shelton High School</td>
+      <th>Shelton High School</th>
       <td>83.420755</td>
       <td>82.917411</td>
       <td>83.383495</td>
       <td>83.778976</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Thomas High School</td>
+      <th>Thomas High School</th>
       <td>83.590022</td>
       <td>83.087886</td>
       <td>83.498795</td>
       <td>83.497041</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Wilson High School</td>
+      <th>Wilson High School</th>
       <td>83.085578</td>
       <td>83.724422</td>
       <td>83.195326</td>
       <td>83.035794</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>Wright High School</td>
+      <th>Wright High School</th>
       <td>83.264706</td>
       <td>84.010288</td>
       <td>83.836782</td>
@@ -1109,6 +1110,7 @@ read_score_grade=pd.DataFrame(student_df.groupby(["school","grade"])["reading_sc
 #Reorganize the column
 read_score_grade_organized=read_score_grade[["school","9th","10th","11th","12th"]]
 
+read_score_grade_organized = read_score_grade_organized.set_index("school")
 read_score_grade_organized
 ```
 
@@ -1133,129 +1135,120 @@ read_score_grade_organized
   <thead>
     <tr style="text-align: right;">
       <th>grade</th>
-      <th>school</th>
       <th>9th</th>
       <th>10th</th>
       <th>11th</th>
       <th>12th</th>
     </tr>
+    <tr>
+      <th>school</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Bailey High School</td>
+      <th>Bailey High School</th>
       <td>81.303155</td>
       <td>80.907183</td>
       <td>80.945643</td>
       <td>80.912451</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Cabrera High School</td>
+      <th>Cabrera High School</th>
       <td>83.676136</td>
       <td>84.253219</td>
       <td>83.788382</td>
       <td>84.287958</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Figueroa High School</td>
+      <th>Figueroa High School</th>
       <td>81.198598</td>
       <td>81.408912</td>
       <td>80.640339</td>
       <td>81.384863</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>Ford High School</td>
+      <th>Ford High School</th>
       <td>80.632653</td>
       <td>81.262712</td>
       <td>80.403642</td>
       <td>80.662338</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>Griffin High School</td>
+      <th>Griffin High School</th>
       <td>83.369193</td>
       <td>83.706897</td>
       <td>84.288089</td>
       <td>84.013699</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>Hernandez High School</td>
+      <th>Hernandez High School</th>
       <td>80.866860</td>
       <td>80.660147</td>
       <td>81.396140</td>
       <td>80.857143</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>Holden High School</td>
+      <th>Holden High School</th>
       <td>83.677165</td>
       <td>83.324561</td>
       <td>83.815534</td>
       <td>84.698795</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>Huang High School</td>
+      <th>Huang High School</th>
       <td>81.290284</td>
       <td>81.512386</td>
       <td>81.417476</td>
       <td>80.305983</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>Johnson High School</td>
+      <th>Johnson High School</th>
       <td>81.260714</td>
       <td>80.773431</td>
       <td>80.616027</td>
       <td>81.227564</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>Pena High School</td>
+      <th>Pena High School</th>
       <td>83.807273</td>
       <td>83.612000</td>
       <td>84.335938</td>
       <td>84.591160</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Rodriguez High School</td>
+      <th>Rodriguez High School</th>
       <td>80.993127</td>
       <td>80.629808</td>
       <td>80.864811</td>
       <td>80.376426</td>
     </tr>
     <tr>
-      <th>11</th>
-      <td>Shelton High School</td>
+      <th>Shelton High School</th>
       <td>84.122642</td>
       <td>83.441964</td>
       <td>84.373786</td>
       <td>82.781671</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>Thomas High School</td>
+      <th>Thomas High School</th>
       <td>83.728850</td>
       <td>84.254157</td>
       <td>83.585542</td>
       <td>83.831361</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>Wilson High School</td>
+      <th>Wilson High School</th>
       <td>83.939778</td>
       <td>84.021452</td>
       <td>83.764608</td>
       <td>84.317673</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>Wright High School</td>
+      <th>Wright High School</th>
       <td>83.833333</td>
       <td>83.812757</td>
       <td>84.156322</td>
@@ -1299,7 +1292,6 @@ school_spending_summary["% Passing Math"] = school_summary_df.groupby("Spending 
 
 school_spending_summary["% Overall Passing Rate"] = (school_spending_summary["% Passing Read"] + school_spending_summary["% Passing Math"]) / 2
 
-school_spending_summary.reset_index(inplace=True)
 school_spending_summary
 
 ```
@@ -1325,18 +1317,24 @@ school_spending_summary
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Spending Ranges (Per Student)</th>
       <th>Average Math Score</th>
       <th>Average Reading Score</th>
       <th>% Passing Read</th>
       <th>% Passing Math</th>
       <th>% Overall Passing Rate</th>
     </tr>
+    <tr>
+      <th>Spending Ranges (Per Student)</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>&lt; $585</td>
+      <th>&lt; $585</th>
       <td>83.455399</td>
       <td>83.933814</td>
       <td>93.325838</td>
@@ -1344,8 +1342,7 @@ school_spending_summary
       <td>91.838137</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>$585-615</td>
+      <th>$585-615</th>
       <td>83.599686</td>
       <td>83.885211</td>
       <td>92.410786</td>
@@ -1353,8 +1350,7 @@ school_spending_summary
       <td>91.599418</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>$615-645</td>
+      <th>$615-645</th>
       <td>79.079225</td>
       <td>81.891436</td>
       <td>83.214343</td>
@@ -1362,8 +1358,7 @@ school_spending_summary
       <td>78.117884</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>$645-675</td>
+      <th>$645-675</th>
       <td>76.997210</td>
       <td>81.027843</td>
       <td>78.427809</td>
@@ -1407,7 +1402,6 @@ school_size_summary["% Passing Math"]=school_summary_df.groupby("School Size")["
 
 school_size_summary["% Overall Passing Rate"] = (school_size_summary["% Passing Read"] + school_size_summary["% Passing Math"]) / 2
 
-school_size_summary.reset_index(inplace=True)
 school_size_summary
 ```
 
@@ -1432,18 +1426,24 @@ school_size_summary
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>School Size</th>
       <th>Average Math Score</th>
       <th>Average Reading Score</th>
       <th>% Passing Read</th>
       <th>% Passing Math</th>
       <th>% Overall Passing Rate</th>
     </tr>
+    <tr>
+      <th>School Size</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Small (&lt;1000)</td>
+      <th>Small (&lt;1000)</th>
       <td>83.821598</td>
       <td>83.929843</td>
       <td>92.471895</td>
@@ -1451,8 +1451,7 @@ school_size_summary
       <td>91.815025</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>Medium(1000-2000)</td>
+      <th>Medium(1000-2000)</th>
       <td>83.374684</td>
       <td>83.864438</td>
       <td>93.244843</td>
@@ -1460,8 +1459,7 @@ school_size_summary
       <td>91.588073</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Large(2000-50000)</td>
+      <th>Large(2000-50000)</th>
       <td>77.746417</td>
       <td>81.344493</td>
       <td>80.190800</td>
@@ -1484,7 +1482,7 @@ school_type_df = pd.DataFrame(school_summary_df.groupby("School Type")["Average 
 school_type_df["Average Reading Score"] = school_summary_df.groupby("School Type")["Average Reading Score"].mean()
 school_type_df["% Passing Read"] = school_summary_df.groupby("School Type")["% Passing Read"].mean()
 school_type_df["% Passing Math"] = school_summary_df.groupby("School Type")["% Passing Math"].mean()
-school_type_df.reset_index(inplace=True)
+
 school_type_df
 ```
 
@@ -1509,25 +1507,29 @@ school_type_df
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>School Type</th>
       <th>Average Math Score</th>
       <th>Average Reading Score</th>
       <th>% Passing Read</th>
       <th>% Passing Math</th>
     </tr>
+    <tr>
+      <th>School Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>Charter</td>
+      <th>Charter</th>
       <td>83.473852</td>
       <td>83.896421</td>
       <td>93.052812</td>
       <td>90.363226</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>District</td>
+      <th>District</th>
       <td>76.956733</td>
       <td>80.966636</td>
       <td>78.324559</td>
