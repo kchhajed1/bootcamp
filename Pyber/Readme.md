@@ -15,6 +15,7 @@ import numpy as np
 
 
 ```python
+#Read the city and ride file into a dataframe
 city_file = "raw_data/city_data.csv"
 ride_file = "raw_data/ride_data.csv"
 
@@ -35,6 +36,7 @@ city_df_orig.count()
 
 
 ```python
+#Remove duplicates on city/type and sum up the driver count
 city_df=(city_df_orig.groupby(['city','type']).sum())
 city_df.reset_index(inplace=True)
 city_df.head()
@@ -105,6 +107,7 @@ city_df.head()
 
 
 ```python
+#display the ride data
 ride_df.head()
 ```
 
@@ -179,7 +182,10 @@ ride_df.head()
 
 
 ```python
+#merge the city and ride data on city to create a complete view of the data 
 complete_data = pd.merge(ride_df, city_df, on=["city","city"], sort="city")
+
+#data cleanup for blank data
 complete_data = complete_data.dropna(how="any")
 complete_data.head()
 ```
@@ -267,16 +273,23 @@ complete_data.head()
 
 
 ```python
+#Create a dataframe for average fare per city by grouping on city and fare
 average_fare_per_city = pd.DataFrame(complete_data.groupby("city")["fare"].mean())
 average_fare_per_city.reset_index(inplace=True)
 
+#Create a dataframe for number of rides per city by grouping on city and ride
 nbr_of_rides_per_city = pd.DataFrame(complete_data.groupby("city")["ride_id"].count())
 nbr_of_rides_per_city.reset_index(inplace=True)
 
+#merge city and ride data so that we have datafram consisting of city, average fare and nbr of rides
 final_city_ride_data=pd.merge(average_fare_per_city,nbr_of_rides_per_city,on="city")
+
+#merge city ride data with the original city dataframe so that we have datafram consisting of city, average fare 
+#and nbr of rides and type
 
 final_city_ride_data = pd.merge(final_city_ride_data,city_df,on="city")
 
+#Rename the columns
 final_city_ride_data = final_city_ride_data.rename(columns={"fare":"Average Fare","ride_id":"Nbr of Rides Per City",
                                                       "driver_count":"Driver Count","type":"Type","city":"City"})
 
@@ -360,6 +373,8 @@ final_pyber_analysis.head()
 
 
 ```python
+#Create a dataframe city type wise for scatter plot
+
 urban_df = final_city_ride_data[final_city_ride_data["Type"] == "Urban"]
 suburban_df = final_city_ride_data[final_city_ride_data["Type"] == "Suburban"]
 rural_df = final_city_ride_data[final_city_ride_data["Type"] == "Rural"]
@@ -367,14 +382,19 @@ rural_df = final_city_ride_data[final_city_ride_data["Type"] == "Rural"]
 
 
 ```python
+#Scatter plot for Urban
+
 plt.scatter(urban_df["Nbr of Rides Per City"], urban_df["Average Fare"], 
             marker="o", facecolors="lightcoral", edgecolors="black",s=10*urban_df["Driver Count"], alpha=0.75,
            label = "Urban")
+
+#Scatter plot for Suburban
 
 plt.scatter(suburban_df["Nbr of Rides Per City"], suburban_df["Average Fare"], 
             marker="o", facecolors="lightskyblue", edgecolors="black",s=10*suburban_df["Driver Count"], alpha=0.75,
             label = "SubUrban")
 
+#Scatter plot for Rural
 plt.scatter(rural_df["Nbr of Rides Per City"], rural_df["Average Fare"], 
             marker="o", facecolors="gold", edgecolors="black",s=10*rural_df["Driver Count"], alpha=0.75,label = "Rural")
 
@@ -384,7 +404,7 @@ plt.title("Pyber Ride Sharing Data (2016)")
 plt.legend(loc="best")
 plt.grid()
 plt.text(38, 35, "** Circle size represents driver count per city.")
-plt.savefig("final_pyber_analysis.png")
+plt.savefig("final_pyber_analysis.png",bbox_inches='tight')
 plt.show()
 ```
 
@@ -413,6 +433,7 @@ total_fare_city_type
 
 
 ```python
+#Pie Chart for Total Fares by City Type
 explode =[ 0,0,0.1]
 colors = ['gold', 'lightskyblue', 'lightcoral']
 fare_city_type_pie = total_fare_city_type.plot(kind="pie",startangle=140,autopct="%1.1f%%",explode=explode,
@@ -420,7 +441,7 @@ fare_city_type_pie = total_fare_city_type.plot(kind="pie",startangle=140,autopct
 plt.axis('equal')
 fare_city_type_pie.set_ylabel(" ")
 plt.legend(bbox_to_anchor=(1, 1))
-plt.savefig("Total_Fares_by_City_Type.png")
+plt.savefig("Total_Fares_by_City_Type.png",bbox_inches='tight')
 plt.show()
 ```
 
@@ -449,6 +470,8 @@ total_ride_city_type
 
 
 ```python
+#Pie Chart for % of Total Rides City Type
+
 explode =[ 0,0,0.1]
 colors = ['gold', 'lightskyblue', 'lightcoral']
 ride_city_type_pie = total_ride_city_type.plot(kind="pie",startangle=140,autopct="%1.1f%%",explode=explode,
@@ -456,7 +479,7 @@ ride_city_type_pie = total_ride_city_type.plot(kind="pie",startangle=140,autopct
 plt.axis('equal')
 ride_city_type_pie.set_ylabel(" ")
 plt.legend(bbox_to_anchor=(1, 1))
-plt.savefig("Total_Rides_by_City_Type.png")
+plt.savefig("Total_Rides_by_City_Type.png",bbox_inches='tight')
 plt.show()
 
 ```
@@ -468,7 +491,7 @@ plt.show()
 
 ```python
 #Total Rides by City Type
-#create a dataframe with driver and type
+#create a dataframe with type and count
 total_driver_city_type = city_df.groupby(["type"])["driver_count"].sum()
 
 total_driver_city_type
@@ -487,6 +510,9 @@ total_driver_city_type
 
 
 ```python
+#Pie Chart for Total Drivers by City Type"
+
+
 explode =[ 0,0,0.1]
 colors = ['gold', 'lightskyblue', 'lightcoral']
 
@@ -495,7 +521,7 @@ driver_city_type_pie = total_driver_city_type.plot(kind="pie",startangle=140,aut
 plt.axis('equal')
 plt.legend(bbox_to_anchor=(1, 1))
 driver_city_type_pie.set_ylabel(" ")
-plt.savefig("Total_Drivers_by_City_Type.png")
+plt.savefig("Total_Drivers_by_City_Type.png",bbox_inches='tight')
 plt.show()
 ```
 
