@@ -89,6 +89,9 @@ def welcome():
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     """Return the station dates and temperature observations for previous year as json"""
+    
+    # Obtain the current year from the date and using that date determine the previous year appending 01-01 and 12-31
+    
     compare_date = dt.date.today()
     start_date = f"{compare_date.year - 1}-01-01"
     end_date = f"{compare_date.year - 1}-12-31"
@@ -99,7 +102,6 @@ def precipitation():
     
     for row in precipitation_result:
         precipitation_dict = {}
-        precipitation_dict["station"] = row.station
         precipitation_dict["date"] = row.date
         precipitation_dict["tobs"] = row.tobs
         precipitation.append(precipitation_dict)
@@ -121,6 +123,8 @@ def stations():
 @app.route("/api/v1.0/tobs")
 def tobs():
     """Return the Temperature Observations (tobs) for the previous year as json"""
+    
+    # Obtain the current year from the date and using that date determine the previous year appending 01-01 and 12-31
     compare_date = dt.date.today()
     start_date = f"{compare_date.year - 1}-01-01"
     end_date = f"{compare_date.year - 1}-12-31"
@@ -137,8 +141,11 @@ def tobs():
 @app.route("/api/v1.0/calculated_values/start=<start_date>")
 @app.route("/api/v1.0/calculated_values/start=<start_date>&end=<end_date>")
 
+#deafult value for start and end date = current date
+
 def start_end_date(start_date=dt.date.today().strftime('%Y-%m-%d'),end_date = dt.date.today().strftime('%Y-%m-%d')):
     """Return a json list of minimum temperature, average temperature and max temperature for a given start or start-end range"""
+
     sel =[func.min(Measurement.tobs),
              func.avg(Measurement.tobs),
              func.max(Measurement.tobs)
