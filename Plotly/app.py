@@ -127,9 +127,12 @@ def wfreq_sample(sample):
     meta_sample = session.query(*sel).filter(Samples_metadata.SAMPLEID == sampleid)
     
     for row in meta_sample:
-        if (row[0] > 0):
-            wfreq_dict["WFREQ"] = row[0]
-            wfreq_dict["SAMPLEID"] = sampleid
+        if (row[0] == 0):
+                wfreq_dict["WFREQ"] = 0
+                wfreq_dict["SAMPLEID"] = sampleid
+        else:
+                wfreq_dict["WFREQ"] = row[0]
+                wfreq_dict["SAMPLEID"] = sampleid
 
     return jsonify(wfreq_dict)
 

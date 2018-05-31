@@ -39,26 +39,41 @@ function getSampleMetaData(sampleid)
 function plotPie(sampleid) 
 {
     var url = "/samples/" + sampleid;
-    console.log(sampleid)
-    console.log(url)
+    //console.log(sampleid)
+    //console.log(url)
     
     Plotly.d3.json(url, function(error, response){
             if (error) return console.warn(error);
 
             var labels = response.otu_ids.slice(0, 10);
             var values = response.sample_values.slice(0,10);
-
-            data =  [{   "labels": labels,
-                        "values": values,
-                      "type": "pie"}   ]
             
+            desc = []
+            
+            new_url = "/otu"
+        
+            Plotly.d3.json(new_url,function(error,response1)
+                           {
+                                    for (var i=0;i<labels.length;i++)
+                                    {
+                                        if (error) return console.warn(error);
+                                            desc.push(response1[labels[i]-1])
+                                    }
+                                }
+                            )
+            
+            //console.log(desc)
+            data =  [{  "labels": labels,
+                        "values": values,
+                        "text":desc,
+                        "type": "pie"}   ]
              var layout = {
                 title: '<b>Bacterial OTUs of Sample <br> for ' + sampleid
                 };
         
             var PIE = document.getElementById('PieChart');
         
-            Plotly.plot(PIE, data, layout);
+            Plotly.newPlot(PIE, data, layout);
         })
 }
 
@@ -140,31 +155,56 @@ function plotScatter(sampleid)
     Plotly.d3.json(url, function(error, response){
             if (error) return console.warn(error);
             
-            var x = response.otu_ids;
-            var y = response.sample_values;
-            var s = []
-            for (i=0;i<y.length;i++)
-            {
-                s.push(y[i]*0.5)   
-            }
-        
-            //console.log(s)
-            //  console.log(y)
+            var xaxis = response.otu_ids;
+            var yaxis = response.sample_values;
+            var size = []
             
-            data =  [{   x: x,
-                         y: y,
-                         mode: 'markers',
-                         marker: {size: s },
-                         type: "scatter"}   ]
+            for (i=0;i<yaxis.length;i++)
+            {
+                size.push(yaxis[i]*0.45)   
+            }
+
+            desc1 = []
+            new_url = "/otu"
+        
+            Plotly.d3.json(new_url,function(error,response1){
+                                    for (var i=0;i<xaxis.length;i++)
+                                    {
+                                        if (error) return console.warn(error);
+                                            desc1.push(response1[xaxis[i]-1])
+                                    }
+                                }
+                            )
+            
+            console.log(desc1)
+        
+        
+            data =  [   {   x: xaxis,
+                             y: yaxis,
+                             mode: 'markers',
+                             type: "scatter",
+                             text:desc1,
+                             marker: {size: size,
+                                     color:xaxis.map(j=>j)
+                                     }
+                         }   
+                    ]
             
             var layout = {
                 title: '<b>Number of Bacterial Samples per OTU for Sample ' + sampleid,
-                showlegend: false
-                };
+                showlegend: false,
+                hovermode: "closest",
+                yaxis: {title: "# of Samples",
+                    showline: true,
+                    zeroline: false},
+                xaxis: {title: "OTU ID",
+                    showline: true,
+                    zeroline: false
+                }};
         
             var SCATTER = document.getElementById('scatter');
         
-            Plotly.plot(SCATTER, data,layout);
+            Plotly.newPlot(SCATTER, data,layout);
         })
 }
 
