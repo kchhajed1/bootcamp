@@ -6,7 +6,7 @@ import requests
 
 def scrape():
     executable_path = {'executable_path': 'chromedriver.exe'}
-    browser1 = Browser('chrome', **executable_path, headless=False)
+    browser1 = Browser('chrome', **executable_path, headless=True)
 
 
     nasa_mars_news = 'https://mars.nasa.gov/news/'
@@ -38,7 +38,7 @@ def scrape():
     # ###### Make sure to save a complete url string for this image
 
     executable_path = {'executable_path': 'chromedriver.exe'}
-    browser2 = Browser('chrome', **executable_path, headless=False)
+    browser2 = Browser('chrome', **executable_path, headless=True)
 
     jpl_image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser2.visit(jpl_image_url)
@@ -160,4 +160,4 @@ def scrape():
 from splinter import Browser
 def init_browser():
     executable_path = {"executable_path", "/user/local/bin/chromedriver"}
-    return Browser("chrome", **executable_path, headless = False)
+    return Browser("chrome", **executable_path, headless = True)
